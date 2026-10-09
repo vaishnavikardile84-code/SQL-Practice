@@ -1,0 +1,63 @@
+No need to apologize 😄 **15 is perfect for a busy travel day.** I'll keep them real-world and mixed, using a new scenario so you're not repeating yesterday's food-delivery table.
+
+### 🏋️ Gym Management — 15 SQL Thinking Questions
+
+1. The gym owner wants to see which members currently have an **active membership**. Display their names and membership types.
+-> SELECT name , is_active FROM Gym_Management WHERE membership_status = 'Active';
+
+2. The manager wants to identify the **3 members paying the highest monthly fees**.
+->SELECT MAX(monthly_fees) FROM gym_members ORDER BY monthly_fees DESC limit 3; 
+
+3. The marketing team wants to find members whose names **start with the letter R**.
+->SELECT * FROM gym_members WHERE name like 'R%';
+
+4. The accounts team wants to know the **average monthly membership fee**.
+->SELECT AVG(monthly_fee) FROM gym_members;
+
+5. The gym wants to find members who joined during **2026** and are from Pune.
+->SELECT Joining_date , city FROM gym_member WHERE Joining_date = '2026' , City = 'pune';
+
+OR 
+
+->SELECT * FROM gym_members WHERE Joining_date = 2026 , City = 'pune';
+
+6. The manager wants to see members whose age is **between 20 and 28**.
+->SELECT * FROM gym_members WHERE age IN (20 AND 28);
+
+7. The gym wants to know which **different cities** its members come from, without repeating a city.
+-> SELECT DISTINCT(city) FROM gym_members;
+
+8. A member has changed their city from Pune to Mumbai. Update that member's record accordingly.
+->UPDATE gym_members SET city = 'Mumbai';
+
+9. The gym wants to find members whose email address **ends with `@gmail.com`**.
+->SELECT * FROM gym_members WHERE email like '%@gmail.com';
+
+10. The manager wants to identify members who have either a **Gold or Premium** membership.
+-> SELECT * FROM gym_members WHERE membership_type IN ('GOLD' OR 'Premium');
+
+11. The gym wants to know the **total monthly revenue** from all active members.
+->SELECT sum(monthly_fee) FROM gym_members WHERE membership_status = ('active');
+
+12. The trainer wants to see active members from **Pune or Mumbai** whose monthly fee is above ₹2,000.
+-> SELECT city FROM gym_members WHERE city IN ('PUNE' , 'Mumbai') AND monthly_fee > 2000; 
+
+13. The manager wants to find the **youngest member** registered in the gym.
+-> SELECT age FROM gym_members WHERE age IN ( 20 30 );
+
+OR
+
+SELECT age FROM gym_members WHERE age >= 20 AND age <= 30;
+
+14. The gym wants to remove the record of a member who permanently cancelled their membership.
+
+-> DELETE FROM gym_members WHERE membership_status = ('Permanently cancelled'); 
+
+15. 🔥 **Challenge:** Management wants a report containing the **Name, Membership Type, City, and Monthly Fee** of active members who have **Gold or Premium** membership, are from **Pune or Mumbai**, and pay between **₹2,000 and ₹5,000**. Show the highest-paying members first and display only the **top 5**.
+
+->  SELECT Name , membership_type ,  city , monthly_fee , membership_status FROM gym_members WHERE membership_type = ('Gold ' , 'Premium') AND city = ('Pune' , 'Mumbai') AND monthly_fee = (2000 , 5000), membership_status = 'Active' ; 
+
+OR 
+SELECT Name , membership_type ,  city , monthly_fee , membership_status FROM gym_members WHERE membership_type IN ('Gold ' , 'Premium') AND city IN ('Pune' , 'Mumbai') AND monthly_fee IN (2000 , 5000)AND membership_status =  ('Active') ;
+
+**Today: just do these 15.** Notepad → write → CLI → execute → self-correct → move on. Then travel and enjoy your day. 😄

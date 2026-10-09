@@ -1,0 +1,59 @@
+CREATE TABLE employee ( id int primary key Auto_increment , name varchar(10) , profit varchar(50) , email varchar(20) , salary decimal , age int , exprience int );
+
+
+INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'raj' , 'test' , 'raj23@gmail.com', 2100 , 33 , 17);
+
+ALTER TABLE Employee ADD COLUMN Branch_Location varchar(30);
+
+1. As a user, I want to add an column branch_location so I can efficiently search the branch wise record. 
+
+-- > ALTER TABLE Employee ADD COLUMN Branch_Location varchar(30);
+
+
+2. As a user, I want to check the total salary expenses on employees. 
+-- > SELECT SUM(Quantity) from Employee;
+
+3. As a user, I want to see the max salary of employee from test 
+profile.
+--> SELECT MAX(Salary) FROM Employee; 
+
+4. As a user I want to get the average experience level of employees. 
+-- > SELECT AVG(Exprience) FROM Employee;
+
+5. As a user I want to see the name of highest paid employee.
+-- >SELECT name , salary FROM Employee WHERE Salary = ( SELECT MAX(Salary) FROM Employee);
+-- > SELECT MAX(Salary) FROM Employee 
+ 
+6. As a user, I want to see the name and experience of lowest paid 
+employee. 
+
+-- > SELECT Name , Exprience FROM Employee WHERE = Salary(SELECT Min(Salary) FROM Employee; 
+7. As a user I want check how many employees are working in 
+company. 
+--> SELECT count(*) FROM Employee;  
+
+8. As a user I want to see those employee names who are from test 
+profile and having salary more than 25K. 
+-- > SELECT Name FROM Employee WHERE Salary > 25 AND Profile = 'test'; 
+
+9. As a user, I want to shift Radha on support profile. 
+-->UPDATE Employee SET  Profile = 'Support' WHERE Name = 'Radha'; 
+
+10. As a user, I want to get the second highest salary of employee. 
+--> SELECT max(salary) FROM Employee WHERE Salary < ( SELECT max(salary) FROM Employee);
+
+11. As a user I want to get the second lowest salary of employee. 
+-->SELECT min(salary) FROM Employee WHERE Salary = ( SELECT min(salary) FROM Employee);
+
+12. As a user, I want to calculate the average salary of employees 
+those are belongs to dev profile.
+--> SELECT Avg(Salary) FROM Employee WHERE Profile = 'Dev';
+  
+13. As a user, I want to see the employee’s name and salary who is 
+having lowest experience.  
+--> SELECT name , salary FROM Employee WHERE salary < ( SELECT min(Exprience) From Employee);
+
+
+14.  As a user, I want to see the employee name who is having lowest 
+age with max salary
+--> SELECT name FROM Employee WHERE AGE = ( SELECT min(age) AND MAX(Salary) FROM Employee; 

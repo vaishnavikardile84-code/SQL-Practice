@@ -1,0 +1,314 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 48
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| batch1314          |
+| batch_1343         |
+| collage            |
+| combinebatch       |
+| company            |
+| company_db         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
+| task               |
+| task04             |
+| users              |
++--------------------+
+14 rows in set (0.01 sec)
+
+mysql> USE Combinebatch;
+Database changed
+mysql> CREATE TABLE employee ( id int primary key Auto_increment , name varchar(10) , profit varchar(50) , email varchar(20) , salary decimal , age int , exprience int );
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> CREATE TABLE employee ( id int primary key Auto_increment , name varchar(10) , profit varchar(50) , email varchar(20) , salary decimal , age int , exprience int );
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> drop table employee;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE TABLE employee ( id int primary key Auto_increment , name varchar(10) , profit varchar(50) , email varchar(20) , salary decimal , age int , exprience int );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO Employee VALUES ( ID , NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 1 , 'Rani' , 'Name' , 'Email','Salary','Age' , 'Exprience');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES ( 1 , 'Rani' , 'Name' , 'Email','Salary','Age' , 'Exprience')' at line 1
+mysql> INSERT INTO Employee VALUES ( ID , NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 1 , 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES ( 1 , 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27)' at line 1
+mysql> INSERT INTO Employee VALUES ( ID , NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES ( 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27)' at line 1
+mysql> INSERT INTO Employee VALUES ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES ( 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27)' at line 1
+mysql> INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'Rani' , 'dev' , 'rani23@gmail.com', 1100 , 43 , 27);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'raj' , 'test' , 'raj23@gmail.com', 2100 , 33 , 17);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'radha' , 'test' , 'raadha3@gmail.com', 2600 , 38 , 21);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'raj' , 'dev' , 'raj3@gmail.com', 51000, 32 , 12);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Employee ( NAME, PROFIT , EMAIL,SALARY , AGE , EXPRIENCE) VALUES ( 'john' , 'dev' , 'john3@gmail.com', 51000, 39 , 27);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee
+    -> ^Z^C
+mysql> select * from employee;
++----+-------+--------+-------------------+--------+------+-----------+
+| id | name  | profit | email             | salary | age  | exprience |
++----+-------+--------+-------------------+--------+------+-----------+
+|  1 | Rani  | dev    | rani23@gmail.com  |   1100 |   43 |        27 |
+|  2 | raj   | test   | raj23@gmail.com   |   2100 |   33 |        17 |
+|  3 | radha | test   | raadha3@gmail.com |   2600 |   38 |        21 |
+|  4 | raj   | dev    | raj3@gmail.com    |  51000 |   32 |        12 |
+|  5 | john  | dev    | john3@gmail.com   |  51000 |   39 |        27 |
++----+-------+--------+-------------------+--------+------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Employee ADD COLUMN Branch_Location varchar(30);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT Salary COUNT(Quantity) from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(Quantity) from Employee' at line 1
+mysql> SELECT Salary COUNT(salary) from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(salary) from Employee' at line 1
+mysql> SELECT Sum(salary) from Employee;
++-------------+
+| Sum(salary) |
++-------------+
+|      107800 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT MAX(Salary) FROM Employee;
++-------------+
+| MAX(Salary) |
++-------------+
+|       51000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(Exprience) FROM Exprience;
+ERROR 1146 (42S02): Table 'combinebatch.exprience' doesn't exist
+mysql> SELECT AVG(Exprience) FROM Employee;
++----------------+
+| AVG(Exprience) |
++----------------+
+|        20.8000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE Exprience > ( SELECT MAX(Exprience) FROM Employee);
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE Exprience > ( SELECT MIN(Exprience) FROM Employee);
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+| id | name  | profit | email             | salary | age  | exprience | Branch_Location |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+|  1 | Rani  | dev    | rani23@gmail.com  |   1100 |   43 |        27 | NULL            |
+|  2 | raj   | test   | raj23@gmail.com   |   2100 |   33 |        17 | NULL            |
+|  3 | radha | test   | raadha3@gmail.com |   2600 |   38 |        21 | NULL            |
+|  5 | john  | dev    | john3@gmail.com   |  51000 |   39 |        27 | NULL            |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE Exprience > ( SELECT AVG(Exprience) FROM Employee);
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+| id | name  | profit | email             | salary | age  | exprience | Branch_Location |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+|  1 | Rani  | dev    | rani23@gmail.com  |   1100 |   43 |        27 | NULL            |
+|  3 | radha | test   | raadha3@gmail.com |   2600 |   38 |        21 | NULL            |
+|  5 | john  | dev    | john3@gmail.com   |  51000 |   39 |        27 | NULL            |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE Salary > ( SELECT MAX(Salary) FROM Employee);
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Employee WHERE Salary = ( SELECT MAX(Salary) FROM Employee);
++----+------+--------+-----------------+--------+------+-----------+-----------------+
+| id | name | profit | email           | salary | age  | exprience | Branch_Location |
++----+------+--------+-----------------+--------+------+-----------+-----------------+
+|  4 | raj  | dev    | raj3@gmail.com  |  51000 |   32 |        12 | NULL            |
+|  5 | john | dev    | john3@gmail.com |  51000 |   39 |        27 | NULL            |
++----+------+--------+-----------------+--------+------+-----------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT name , salary FROM Employee WHERE Salary = ( SELECT MAX(Salary) FROM Employee);
++------+--------+
+| name | salary |
++------+--------+
+| raj  |  51000 |
+| john |  51000 |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> SELECT AVG(Exprience) FROM Employee;
++----------------+
+| AVG(Exprience) |
++----------------+
+|        20.8000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Name , Exprience FROM Employee WHERE = (SELECT Min(Salary) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= (SELECT Min(Salary) FROM Employee' at line 1
+mysql> SELECT Name , Exprience FROM Employee WHERE = (SELECT Min(Salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= (SELECT Min(Salary) FROM Employee)' at line 1
+mysql> SELECT Name , Exprience FROM Employee WHERE Salary = (SELECT Min(Salary) FROM Employee);
++------+-----------+
+| Name | Exprience |
++------+-----------+
+| Rani |        27 |
++------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT count(*) FROM Employee;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM Employee;
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+| id | name  | profit | email             | salary | age  | exprience | Branch_Location |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+|  1 | Rani  | dev    | rani23@gmail.com  |   1100 |   43 |        27 | NULL            |
+|  2 | raj   | test   | raj23@gmail.com   |   2100 |   33 |        17 | NULL            |
+|  3 | radha | test   | raadha3@gmail.com |   2600 |   38 |        21 | NULL            |
+|  4 | raj   | dev    | raj3@gmail.com    |  51000 |   32 |        12 | NULL            |
+|  5 | john  | dev    | john3@gmail.com   |  51000 |   39 |        27 | NULL            |
++----+-------+--------+-------------------+--------+------+-----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Name FROM Employee WHERE Salary > 25 AND Profile 'test';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''test'' at line 1
+mysql> SELECT Name FROM Employee WHERE Salary > 25 AND Profile = 'test';
+ERROR 1054 (42S22): Unknown column 'Profile' in 'where clause'
+mysql> SELECT Name FROM Employee WHERE Salary > 25 AND Profit = 'test';
++-------+
+| Name  |
++-------+
+| raj   |
+| radha |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Employee RENAME COLUMN profit to Profile;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE TABLE Employee SET 'Support Profile' , WHERE Name = 'Radha';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE Employee SET 'Support Profile' , WHERE Name = 'Radha'' at line 1
+mysql> UPDATE Employee SET 'Support Profile' , WHERE Name = 'Radha';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Support Profile' , WHERE Name = 'Radha'' at line 1
+mysql> UPDATE Employee SET  Profile = 'Support' WHERE Name = 'Radha';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT max(salary) FROM Employee WHERE Salary = ( SELECT max(salary) FROM Employee);
++-------------+
+| max(salary) |
++-------------+
+|       51000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT max(salary) FROM Employee WHERE Salary < ( SELECT max(salary) FROM Employee);
++-------------+
+| max(salary) |
++-------------+
+|        2600 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT min(salary) FROM Employee WHERE Salary < ( SELECT min(salary) FROM Employee);
++-------------+
+| min(salary) |
++-------------+
+|        NULL |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT min(salary) FROM Employee WHERE Salary > ( SELECT min(salary) FROM Employee);
++-------------+
+| min(salary) |
++-------------+
+|        2100 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT min(salary) FROM Employee WHERE Salary > ( SELECT min(salary) FROM Employee);
++-------------+
+| min(salary) |
++-------------+
+|        2100 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Avg(salary) FROM Employee WHERE Profile = 'Dev';
++-------------+
+| Avg(salary) |
++-------------+
+|  34366.6667 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT name , salary FROM Employee WHERE salary < ( SELECT min(Exprience) From Employee);
+Empty set (0.00 sec)
+
+mysql> SELECT name , salary FROM Employee WHERE Exprience < ( SELECT min(Exprience) From Employee);
+Empty set (0.00 sec)
+
+mysql> SELECT name , salary FROM Employee WHERE Exprience = ( SELECT min(Exprience) From Employee);
++------+--------+
+| name | salary |
++------+--------+
+| raj  |  51000 |
++------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT name FROM Employee WHERE AGE = ( SELECT min(age) AND MAX(Salary) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SELECT name FROM Employee WHERE AGE = ( SELECT min(age) FROM Employee) AND Salary = ( SELECT MAX(Salary) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SELECT name FROM Employee WHERE AGE = ( SELECT min(age) AND MAX(Salary) FROM Employee);
+Empty set (0.00 sec)
+
+mysql> SELECT Name
+    -> FROM Employee
+    -> WHERE Age = (SELECT MIN(Age) FROM Employee)
+    -> AND Salary = (SELECT MAX(Salary) FROM Employee);
++------+
+| Name |
++------+
+| raj  |
++------+
+1 row in set (0.00 sec)
+
+mysql> SELECT name FROM Employee WHERE AGE = ( SELECT min(age) FROM Employee) AND Salary = ( SELECT MAX(Salary) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Truncate table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>

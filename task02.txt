@@ -1,0 +1,197 @@
+Absolutely. This time I’ll make the set **stronger and more concept-building**, not just random syntax questions.
+
+We’ll use **different real-world scenarios** so you don’t keep seeing Employee/Student/Customer tables.
+
+### First: Your 30-question SQL challenge
+
+**Rule:** Don’t look for answers yet. Solve them yourself. If you get stuck, send me the question number and I’ll give you a **hint**, not the answer.
+
+---
+
+## 🟢 Part 1 — CREATE TABLE + Data Types + Constraints
+
+### Scenario: Food Delivery App
+
+Create a table named `Food_Orders` with these fields:
+
+* `order_id`
+* `customer_name`
+* `restaurant`
+* `city`
+* `food_category`
+* `amount`
+* `quantity`
+* `payment_status`
+* `is_delivered`
+* `order_date`
+
+CREATE TABLE ( Order_id int PRIMARY KEY AUTO_INCREMENT , Customer_Name VARCHAR(40) NOT NULL , Restraurant VARCHAR(30) NOT NULL , City VARCHAR(20) , Food_Category VARCHAR(20) ,Amount Decimal CHECK amount NOT ( amount < 50 ) , Quantity INT , Payment_Status VARCHAR(10) DEFAULT ('Pending') , , Is_Deliver BOOLEAN,Order_Date DATE );
+
+IN
+
+**Q1.** Write the `CREATE TABLE` query using appropriate data types.
+
+**Q2.** Make `order_id` the **PRIMARY KEY** and automatically generate its value using `AUTO_INCREMENT`.
+ALTER 
+**Q3.** Make `customer_name` and `restaurant` **NOT NULL**.
+
+**Q4.** Make `payment_status` have a **DEFAULT** value of `'Pending'`.
+
+**Q5.** Add a `CHECK` constraint so that `amount` cannot be less than 50.
+
+---
+
+## 🟡 Part 2 — CRUD Operations
+
+Using `Food_Orders`:
+
+**Q6.** Insert **5 realistic records** into the table.
+
+------> INSERT INTO Food_Orders ( Customer_name , restaurant , city , food_Category , amount, quantity , payment_status , is_delivered ,order_date ) VALUES ('Vaishnavi' , 'Mc'Donalt' , 'Pune' ,  'Fast Food' , 150.00 , 2 , 'Online', TRUE , '2026-09-11');
+select 
+
+**Q7.** Display all food orders.
+
+------> SELECT * FROM Food_Orders;
+
+
+**Q8.** Display only `customer_name`, `restaurant`, `amount`, and `payment_status`.
+-----> SELECT customer_name , restaurant , amount, payment_status FROM Food_Orders;
+
+**Q9.** Update the payment status of the order with `order_id = 3` to `'Successful'`.
+----->UPDATE payment_status = 'Sucessful' from Food_Orders WHERE order_id =  3 ; ( ye pakka galat ho sakta hai);
+
+**Q10.** Change the city of the customer whose `order_id = 5` to `'Mumbai'`.
+UPDATE city = 'Mumbai' FROM Food_Orders WHERE order_id = 5 ;
+
+**Q11.** Delete the order whose `order_id = 4`.
+
+--- DELETE FROM Food_Orders WHERE order_id = 4;
+
+## 🟠 Part 3 — ALTER Queries
+
+**Q12.** Add a new column `delivery_partner` to `Food_Orders`.
+ALTER TABLE Food_Orders add column delivery_partner varchar(30);
+
+**Q13.** Change the size of `customer_name` so that it can store up to 50 characters.
+ALTER TABLE Food_Orders MODIFY COLUMN customer_name VARCHAR(50);
+
+**Q14.** Rename the column `quantity` to `items_count`.
+ALTER TABLE Food_Delivery RENAME Column Quantity to items_count;
+
+**Q15.** Remove the `delivery_partner` column.
+--- ALTER TABLE Food_Delivery Drop column Delivery_partner;
+
+## 🔵 Part 4 — Filtering + Comparison Operators
+
+### Scenario: Online Course Platform
+
+Create this table:
+
+`Courses`
+
+Fields:
+
+* `course_id`
+* `course_name`
+* `category`
+* `instructor`
+* `city`
+* `fees`
+* `duration`
+* `rating`
+* `is_active`
+
+**Q16.** Create the table with suitable data types. Make `course_id` a **PRIMARY KEY + AUTO_INCREMENT**.
+
+----->  CREATE TABLE Course ( course_id int PRIMARY KEY AUTO_INCREMENT ,course_name varchar(40) , category varchar(20), Instructor varchar(20) , city varchar(45) , fees decimal , duration varchar(20) , rating float , is_active Boolean );
+
+**Q17.** Insert at least **8 courses** with realistic values.
+INSERT INTO Course ( course_id , course_name , category , instructor, city , fees , duration , rating, is_active ')VALUES ( 12,'Data Analyst',;Shubhan Sir','Pune' ,24000 , '6 Months' , 4.5 , TRUE);
+
+**Q18.** Find courses whose fees are **greater than ₹20,000**.
+SELECT * from course WHERE Fees > 20000;
+
+**Q19.** Find courses whose fees are **less than or equal to ₹15,000**.
+SELECT * FROM COURSE WHERE fees <= 15000;
+
+**Q20.** Find active courses from Pune.
+------>SELECT * FROM COURSE WHERE is_active = True AND City = 'Pune';
+
+## 🔴 Part 5 — IN + BETWEEN + LIKE
+d
+Using `Courses`:
+
+**Q21.** Find courses belonging to **Data Science, Data Analytics, or AI** using the `IN` operator.
+
+-----> SELECT * FROM Course WHERE course_name IN ( 'Data Science', 'Data Analytics' ,'AI');
+
+**Q22.** Find courses with fees **between ₹10,000 and ₹30,000**.
+
+-----> SELECT * FROM COURSES WHERE Fees BETWEEN 10000 AND 30000;
+
+**Q23.** Find courses whose rating is **between 4.0 and 5.0**.
+-----> SELECT * FROM COURSES WHERE Rating  BETWEEN 4.0 AND 5.0;
+
+
+**Q24.** Find course names that **start with `D`**.
+------> SELECT * FROM Course WHERE Name like 'D%';
+
+**Q25.** Find instructor names that **contain `an` anywhere** in the name.
+
+---SELECT * FROM Course WHERE instructor LIKE '%AN%';
+
+## 🟣 Part 6 — ORDER BY + LIMIT + OFFSET + ALIAS
+
+Using `Courses`:
+
+**Q26.** Display courses from **highest fees to lowest fees**.
+---> SELECT* FROM Course ORDER BY FEES DESC ;
+
+**Q27.** Display the **3 highest-rated courses**.
+---> SELECT * FROM COURSE ORDER BY rating ASC LIMIT 3;
+
+**Q28.** Display only `course_name` and `fees`, but show `fees` with the alias **`Course_Fee`**.
+---> SELECT course_name , fees FROM Course fees AS Course_Fees; 
+---> SELECT course_name , fees FROM Course WHERE fees AS Course_Fees; 
+
+**Q29.** Assume the website displays **3 courses per page**. Write the query for **page 2** using `LIMIT` and `OFFSET`.
+
+--- 1
+
+## 🟤 Part 7 — Aggregate + DISTINCT + TRUNCATE
+
+**Q30.** Write **one query for each requirement below**:
+
+a) Find the **highest course fee**.
+SELECT MAX(fees) From Course; 
+b) Find the **average course fee**.
+SELECT avg(fees) FROM Course;
+c) Find the **total number of courses**.
+SELECT count(course_name) FROM course;
+d) Find the **different cities** from which courses are available using `DISTINCT`.
+SELECT DISTINCT city From courses;
+e) Remove **all records** from `Courses` using `TRUNCATE`.
+TRUNCATE TABLE COURSES;
+
+---
+
+### 🔥 What this set is designed to fix
+
+I deliberately included the areas where you were getting stuck earlier:
+
+* `WHERE column IN (...)` — **not** `WHERE IN column`
+* `WHERE column BETWEEN x AND y`
+* `WHERE column LIKE 'pattern'`
+* `ASC` vs `DESC`
+* `SELECT → FROM → WHERE → ORDER BY → LIMIT`
+* Combining **IN + BETWEEN + LIKE + AND**
+* Reading requirements carefully
+* Choosing the correct table/column
+* CRUD + DDL together
+* Constraints and data types
+* Aggregate functions and `DISTINCT`
+
+**Important:** Q29 is included because you mentioned `LIMIT/OFFSET` as a topic, but if your class still hasn't properly taught pagination, **skip Q29 for now**. It won't count against you.
+
+Start with **Q1 only**. Send me your `CREATE TABLE` query, and I’ll check it like a trainer—**I won’t immediately give you the answer; I’ll first make you identify your own mistake.**

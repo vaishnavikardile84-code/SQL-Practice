@@ -1,0 +1,45 @@
+
+
+
+employee 
+department 
+
+Create table employee(empID int PRIMARY KEY,empName varchar(70),city varchar(80),deptID int , FOREIGN KEY (deptId) REFERENCES department(deptID));
+
+
+Types of JOIN :
+
+INNER   --> matching record in both table 
+
+SELECT employee.empId,employee.empName,employee.city,department.deptname,department.deptsize FROM employee INNER JOIN department ON employee.deptID = department.deptID;
+
+
+LEFT --> fetch ALL Record from LEFT TABLE 
+
+SELECT e.empID,e.empName,e.city,e.deptid,  d.deptname FROM employee e LEFT JOIN department d ON e.deptID = d.deptID;
+
+RIGHT --> fetch All Record from RIGHT TABLE 
+
+SELECT e.empID,e.empName,e.city,d.deptid,  d.deptname FROM employee e RIGHT JOIN department d ON e.deptID = d.deptID;
+
+
+FULL OUTER JOIN --> fetch both table record 
+
+LEFT + RIGHT  --> NOTE --> Used UNION keyword 
+
+ SELECT employee.empId,employee.empName,employee.city, employee.deptID,department.deptname,department.deptsize FROM employee LEFT JOIN department ON employee.deptID = department.deptID UNION SELECT employee.empId,employee.empName,employee.city, employee.deptID,department.deptname,department.deptsize FROM employee RIGHT JOIN department ON employee.deptID = department.deptID;
+
+
+CROSS JOIN : fetch all possibility of both tables 
+ 
+SELECT employee.empName , department.deptName FROM Employee CROSS JOIN department;
+
+
+SELF : explore it : 
+
+
+For multiple Foreign keys : 
+
+Fetch Query : 
+
+SELECT customer.cid,customer.cname,orders.oid,orders.oname , product.pid,product.pname FROM customer INNER JOIN orders ON customer.oid = orders.oid INNER JOIN product ON customer.pid = product.pid;

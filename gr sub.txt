@@ -1,0 +1,68 @@
+Absolutely. Since you **learned GROUP BY and subqueries today**, let's make these 10 questions a **concept-strengthening drill**, not just syntax practice.
+
+I'll mix both topics and **won't give hints or answers initially**. Use your MySQL CLI and try independently.
+
+### Use this table: `Products`
+
+Assume it has:
+
+`Id, Name, Category, Price, Quantity, Brand, Is_Available, Launch_Date`
+
+## 🔥 10 SQL Practice Questions
+
+### GROUP BY
+
+**1.** Show the **total quantity of products available in each category**.
+-->  SELECT COUNT(Quantity) FROM Products;
+
+**2.** Show the **average price of products for each category**.
+-->  SELECT avg(Quantity) FROM Products;
+
+**3.** Show the **maximum price in each category**, but display only categories where the maximum price is **greater than 3000**.
+--> SELECT category from product where max(price) > 3000 GROUP BY category;  
+-->SELECT * FROM Products WHERE category > ( SELECT MAX(price) > 3000);   
+
+**4.** Show each **brand** and the **number of products** belonging to that brand.
+
+**5.** Show the **total value of stock for each category**.
+Stock value = `Price × Quantity`.
+
+---
+
+### Subqueries
+
+**6.** Find all products whose price is **greater than the average price of all products**.
+
+**7.** Find the product(s) whose price is **equal to the highest price in the table**.
+
+**8.** Find all products that belong to the **same category as the product named `'Jeans'`**.
+
+---
+
+### 🔥 Mixed — GROUP BY + Subquery
+
+**9.** Find categories whose **average product price is greater than the overall average product price**.
+
+**10.** Find the **brand that has more products than the average number of products per brand**.
+
+---
+
+### Your rules for this practice
+
+1. **Don't ask ChatGPT for the query immediately.**
+2. Write it in Notepad first.
+3. Execute it in MySQL.
+4. If you get an error, **try to understand the error yourself first**.
+5. If you're genuinely stuck, send me your query — I'll give you **just enough help**, not the full answer.
+
+For today's practice, pay special attention to this distinction:
+
+**GROUP BY:**
+
+> "Calculate something **for each group**."
+
+**Subquery:**
+
+> "Use the result of **one query inside another query**."
+
+Start with **Q1–Q5**, then send me your queries/results. I'll check them like a SQL trainer. 💻🔥

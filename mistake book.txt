@@ -1,0 +1,161 @@
+1)Remember spelling - tables name - s/es 
+	So this is a careless/syntax issue, not a concept issue
+AGAIN THIS MISTAKE
+
+
+2)Your weakness here:
+
+Reading the exact condition carefully.
+
+Remember:
+
+at least → >=
+at most → <=
+greater than → >
+less than → <
+exactly → =
+
+3)syntax wrong.
+ WHERE column IN ('A', 'B', 'C')
+
+4) COLUMN NAME BETWEEN A AND B
+
+5) LIKE concept correct, structure wrong.- WHERE name LIKE 'R%'
+IN → multiple exact values
+Never combine IN before LIKE
+
+Pattern understanding: ✅
+Query structure: ❌
+
+6) mixing AS and ASC.mixing AS and ASC.
+ASC  → low → high
+DESC → high → low
+
+7)PENIGNATION - Page 1 → LIMIT 10 OFFSET 0
+Page 2 → LIMIT 10 OFFSET 10
+Page 3 → LIMIT 10 OFFSET 20
+
+8) WHERE column IN (...)
+
+9) Wrong table/column
+
+and
+
+ASC instead of DESC.
+
+10 ) Scenario reading
+
+Before writing the query, ask:
+
+"What table am I working with NOW?"
+
+USE AND TO CONNECT DIFFERENT FIELDS WHERE OPERATION AND CONDITIONS ARE GOING ON.
+
+
+11) COUNT() - tells you how many
+WHERE - tells you which ones
+
+
+12)INTERVIEW LEVEL :
+
+SELECT customer_name, city, price
+FROM Orders
+WHERE city IN ('Pune', 'Mumbai')
+AND price BETWEEN 1000 AND 10000
+AND customer_name LIKE 'A%'
+AND is_delivered = TRUE
+ORDER BY price DESC
+LIMIT 5;
+
+
+14 )- SELECT columns
+FROM table
+WHERE condition
+ORDER BY column ASC/DESC
+LIMIT number;
+
+
+15)column IN (...)
+column LIKE 'pattern'
+column BETWEEN x AND y
+
+
+16) ASC
+
+Ascending
+
+100
+200
+300
+400
+DESC
+
+Descending
+
+400
+300
+200
+100
+
+17)- Before writing SQL, identify:
+
+TABLE → COLUMNS → CONDITIONS
+
+
+18) 
+| English      | SQL       |
+| ------------ | --------- |
+| exactly      | `=`       |
+| at least     | `>=`      |
+| greater than | `>`       |
+| at most      | `<=`      |
+| less than    | `<`       |
+| between      | `BETWEEN` |
+| one of these | `IN`      |
+| pattern      | `LIKE`    |
+
+WHERE price BETWEEN 500 AND 2000;
+WHERE category IN ('Electronics', 'Clothing');
+WHERE name LIKE 'S%';
+
+BETWEEN lower_value AND higher_value
+
+ORDER BY price DESC  ORDER BYY ------------>< 
+GROUP BY 
+SPELLING MISTAKE
+CHECK (price > 0) NOT ROHAN.
+WHERE name = 'rohan'
+
+Your actual weak-area ranking
+🔴 Focus most
+
+1. ORDER BY + LIMIT
+2. Table/column name accuracy
+3. SQL syntax structure
+4. GROUP BY + HAVING
+5. Aggregate + GROUP BY logic
+
+🟡 Moderate practice
+
+6. BETWEEN
+7. LIKE
+8. Strings/quotes
+9. ALTER TABLE
+10. Data types
+
+🟢 Already good
+
+11. SELECT + WHERE
+12. IN
+13. Aggregate basics
+14. DISTINCT
+15. Alias
+16. Boolean
+17. Date filtering
+18. Basic constraints
+
+
+
+
+
+

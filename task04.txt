@@ -1,0 +1,260 @@
+
+
+
+
+### Scenario: E-commerce company 🛒
+
+You are working as a junior data/SQL trainee for an e-commerce company.
+
+---
+
+### 1. Create the database and table
+
+Create a database named `ecommerce` and a table named `products`.
+
+
+CREATE TABLE PRODUCTS ( Id INT , Name VARCHAR(10) , Category varchar(20) , Price int , Quantity int , Brand varchar(30) , is_available BOOLEAN , Launch_date DATE );
+The table should contain:
+
+* `product_id`
+* `product_name`
+* `category`
+* `price`
+* `quantity`
+* `brand`
+* `is_available`
+* `launch_date`
+
+Choose suitable data types. Make `product_id` an **AUTO_INCREMENT primary key**.
+
+ALTER TABLE Products MODIFY COLUMN ID INT Primary key Auto_Increment;
+
+ INSERT INTO Products
+    -> (Id, Name, Category, Price, Quantity, Brand, Is_available, Launch_date)
+    -> VALUES
+    -> (1, 'Laptop', 'Electronics', 55000, 10, 'Dell', TRUE, '2025-01-15'),
+    -> (2, 'Smartphone', 'Electronics', 25000, 15, 'Samsung', TRUE, '2025-03-20'),
+    -> (3, 'Running Shoes', 'Shoes', 3000, 25, 'Nike', TRUE, '2025-05-10'),
+    -> (4, 'T-Shirt', 'Clothing', 800, 40, 'Puma', TRUE, '2025-06-18'),
+    -> (5, 'Headphones', 'Electronics', 2500, 20, 'Sony', TRUE, '2025-02-12'),
+    -> (6, 'Jeans', 'Clothing', 1800, 30, 'Levis', TRUE, '2025-04-25'),
+    -> (7, 'School Bag', 'Bags', 1200, 18, 'Skybags', FALSE, '2024-11-05'),
+    -> (8, 'Smart Watch', 'Electronics', 5000, 12, 'Boat', TRUE, '2025-07-01'),
+    -> (9, 'Formal Shoes', 'Shoes', 3000, 8, 'Bata', TRUE, '2024-12-15'),
+    -> (10, 'Jacket', 'Clothing', 2500, 14, 'Puma', FALSE, '2025-08-10');
+Query OK, 10 rows affected (0.01 sec)
+
+---
+
+### 2. Constraints
+
+The company has these requirements:
+
+* `product_name` cannot be NULL. -  ALTER TABLE Products MODIFY COLUMN NAME VARCHAR(30) Not null;
+* `price` must be greater than 0. - ALTER TABLE Products MODIFY COLUMN Price int check (price > 0) ;
+* `quantity` cannot be negative.- ALTER TABLE ProducTS MODIFY COLUMN Quantity int CHECK (quantity > 0);
+* `is_available` should automatically be `TRUE` if no value is provided. - ALTER TABLE Products Modify column is_available boolean default true;
+
+Create/modify the table to satisfy these requirements.
+
+---
+
+### 3. Insert product records
+
+Insert **10 realistic products** into the table.
+
+Requirements:
+
+* At least 3 products should belong to the same category.
+* At least 2 products should have the same price.
+* Use different quantities.
+* Use both available and unavailable products.
+
+---
+
+### 4. ALTER TABLE
+
+The company now wants to store a product's **discount percentage**.
+
+Add a column:
+
+`discount`
+
+Choose an appropriate numeric data type.
+ ALTER TABLE Products ADD COLUMN Discount decimal(10,5);
+---
+
+### 5. Comparison operator
+
+The finance team wants to identify expensive products.
+
+> Display all products whose price is **greater than ₹1,500**.
+ SELECT name FROM Products WHERE price > 1500;
+---
+
+### 6. BETWEEN
+
+The marketing team wants products in the mid-range price segment.
+
+> Display products whose price is **between ₹500 and ₹2,000**.
+
+---SELECT name FROM Products WHERE Price between 500 AND 2000 ;
+
+### 7. IN operator
+
+The company is running a campaign for three categories:
+
+* Electronic
+* Clothing
+* Shoes
+
+> Display products belonging to any of these three categories.
+
+---SELECT NAME FROM Products WHERE Category IN ('Electronics' , 'Clothing' , 'Shoes');
+
+### 8. LIKE operator
+
+The marketing team wants to find products based on their names.
+
+> Display products whose product name **starts with "S"**.
+
+---SELECT * FROM Products WHERE name Like 's%';
+
+### 9. DISTINCT
+
+The manager asks:
+
+> "What different product categories do we currently have?"
+
+Display each category **only once**.
+
+---SELECT DISTINCT (Category) FROM Products;
+
+### 10. ORDER BY
+
+The manager wants to see the most expensive products first.
+
+> Display all products from **highest price to lowest price**.
+
+---select name from Products ORDER BY Price ASC;
+
+### 11. LIMIT + ORDER BY
+
+The manager now says:
+
+> "I only want to see the **5 most expensive products**."
+
+Write one query to produce this result.
+
+---SELECT name FROM Products ORDER BY DESC LIMIT 5 ;
+
+### 12. Alias
+
+The reporting team wants a cleaner output.
+
+Display:
+
+* `product_name`
+* `price`
+* `quantity`
+
+But rename the output columns as:
+
+* `Product`
+* `Price_INR`
+* `Stock`
+
+Use aliases.
+
+---SELECT name AS 'Product'  , price AS 'Price_INR' , Quantity as 'Stock' FROM Products;
+
+### 13. COUNT
+
+The company wants to know:
+
+> "How many products are currently stored in our product catalogue?"
+
+Use an aggregate function.
+
+---SELECT Count(name) FROM Products;
+
+### 14. Multiple aggregate functions
+
+The finance team wants a basic price summary.
+
+Find:
+
+* highest product price
+* lowest product price
+* average product price
+* total of all product prices
+
+Use appropriate aggregate functions.
+
+---SELECT MAX(Price) , MIN(Price) , AVG(Price) , sum(price) FROM Products;
+
+
+
+### 15. Aggregate + filter
+
+The company wants to analyse only relatively expensive products.
+
+> Find the **average price** of products whose price is greater than ₹1,000.
+
+---SELECT avg(Price) From Products WHERE Price > 1000;
+
+### 16. UNIQUE
+
+The company introduces a unique product code called `sku`.
+
+Requirement:
+
+> No two products should have the same SKU.
+
+Add the `sku` column and apply the appropriate constraint.
+
+---ALTER TABLE PRODUCT ADD Column sku int UNIQUE;
+
+### 17. Date filtering
+
+The company wants to analyse recently launched products.
+
+> Display all products launched **after January 1, 2025**.
+
+Use the appropriate date condition.
+
+---select launch_date , id FROM products WHERE Launch_Date > '2025-01-01';
+
+### 18. Boolean filtering
+
+The inventory manager wants to see only products that are currently available.
+
+> Display products where `is_available` is TRUE.
+
+---SELECT name from products where is_available = true;
+
+### 19. TRUNCATE
+
+The development team has a temporary table called:
+
+`test_products`
+
+They want to:
+
+> Remove **all records** from the table but keep the table itself and its structure.
+
+Which SQL command should you use?
+
+--- Truncate table products;
+
+### 20. 🔥 Final mixed challenge
+
+The sales manager gives you this requirement:
+
+> "Show me the **3 most expensive available products** from either the **Electronics or Clothing** category. I only need the product name and price, and I want the results from highest price to lowest price."
+
+Write **one SQL query** to solve the complete requirement.
+
+---SELECT MAX(Price) FROM Products WHERE Category IN ( 'Electronics' OR 'Clothing'); 
+
+SELECT Name , price FROM Products WHERE is_available = TRUE AND Categorty IN ('Electronics' , 'Clothing') ORDER BY price DESC limit 3;

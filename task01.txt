@@ -1,0 +1,302 @@
+
+
+# 🔥 SQL REAL-LIFE PRACTICE — 20 QUESTIONS
+
+### Use this Employee table for Q1–Q12
+
+```text
+Employee
+--------------------------------
+id
+name
+department
+city
+age
+salary
+experience
+email
+is_active
+joining_date
+```
+
+---
+
+CREATE TABLE Employees ( ID int PRIMARY KEY , Name VARCHAR(20), Department VARCHAR(20), City VARCHAR(40), Age int , Salary decimal , Exprience VARCHAR(20),Email VARCHAR(20),Is_Active Boolean , Joining_Date DATE);
+
+INSERT INTO Employees (ID , Name ,Department , City, Age , Salary ,Exprience,Email , Is_Active , Joining_Date ) VALUES ( 121 , 'Vaish','IT','Pune',24,45000,'Fresher','vaish232@gmail.com',True,'2027-06-19');
+
+### 1. Employee Directory
+
+HR wants a list containing only the **employee name, department, city, and email**.
+
+Write the query.
+
+---SELECT name, department, city ,email FROM Employee;
+
+### 2. Salary Eligibility
+
+A company wants to identify employees eligible for a special benefit.
+
+Eligibility:
+
+* salary is at least ₹40,000
+* employee is active
+* city is Pune
+
+Display their **name, salary, and city**.
+
+---SELECT * FROM Employee WHERE salary = 40000 AND Is_Active = True AND city = 'Pune';
+
+### 3. Department Search
+
+The HR team wants employees belonging to **IT, HR, or Finance**.
+
+Use the most appropriate operator rather than writing multiple `OR` conditions.
+
+---SELECT * FROM Employee WHERE IN Department ( 'IT' , 'HR' , 'Finance' ); 
+
+### 4. Age-Based Recruitment
+
+A company is hiring candidates between **21 and 28 years old**, including both ages.
+
+Find those employees.
+
+---SELECT * FROM Employee WHERE Age >= 21 AND Age <= 28 ;
+---SELECT * FROM Employee WHERE IN Age ( 21 , 28 );
+### 5. Employee Name Search
+
+The HR employee-search system should find everyone whose name **starts with "R"**.
+
+Use pattern matching.
+
+--- SELECT * From Employee WHERE IN name like 'R%'; 
+
+### 6. Email Investigation
+
+The IT team wants to find employees whose email address **ends with `@gmail.com`**.
+
+Write the query.
+
+---SELECT * FROM Employee WHERE IN email like '%@gmail.com';
+
+### 7. Salary Ranking
+
+Management wants a salary report where the **highest-paid employee appears first**.
+
+Display: 
+
+```text
+name
+department
+salary
+```
+
+---SELECT * FROM Employee ORDER BY Salary limit 2 offset 1 AS ASC ;
+OR
+---Select name , department , salary FROM Employee ORDER BY Salary limit 2 OFFSET 1 AS ASC ; 
+
+### 8. Top Performers
+
+Management wants to see only the **top 3 highest-paid employees**.
+
+Write the query.
+
+---SELECT * FROM Employee ORDER BY Salary LIMIT 3 AS ASC; 
+OR
+----SELECT * FROM Employee ORDER BY Salary ASC LIMIT 3;
+
+### 9. Employee Portal Pagination
+
+Your company portal displays **10 employees per page**.
+
+HR asks for **page 3**.
+
+Write the query using pagination.
+
+Think carefully about how many records must be skipped.
+
+---SELECT * FROM Employee ORDER BY ID LIMIT 10 OFFSET 1 ;- I do not know what is pagination hame padhya hi nhi hai .
+
+### 10. Unique Locations
+
+The company has employees from many cities.
+
+HR wants to know **which different cities are represented**, without displaying the same city multiple times.
+
+---SELECT DISTINCT(city) FROM Employee;
+---SELECT DISTINCT city FROM Employee;
+
+
+### 11. Salary Statistics
+
+Finance asks:
+
+> “What is the total monthly salary expense for all employees?”
+
+Return only the required calculated value.
+
+---SELECT sum(salary) FROM Employee;
+
+### 12. Department Analysis
+
+Management asks:
+
+> “What is the average salary of employees working in the IT department?”
+
+Write the query.
+
+---SELECT avg(SALARY) FROM Emplyee WHERE department = 'IT';
+
+# 🟠 NOW CHANGE THE SCENARIO
+
+Imagine you're working for an **e-commerce company**.
+
+Table:
+
+```text
+Orders
+--------------------------------
+order_id
+customer_name
+city
+product
+category
+price
+quantity
+payment_status
+is_delivered
+```
+
+### 13. Online Order Filter
+
+The operations team wants orders where:
+
+* payment is successful
+* order has been delivered
+* price is greater than ₹1,000
+
+Find those orders.
+
+---SELECT * FROM text_orders WHERE payment_status = 'Sucessful' AND is_delivered = TRUE AND price > 1000 ;
+
+### 14. Product Categories
+
+The marketing team wants orders belonging to:
+
+```text
+Electronics
+Clothing
+Books
+```
+
+Use an appropriate operator.
+
+---SELECT * FROM text_order WHERE  IN Category ( 'Electronics' , 'Clothing' ,'Books' );
+
+### 15. Expensive Orders
+
+Management wants the **5 most expensive orders**, from highest price to lowest.
+
+---SELECT * FROM Employee ORDER BY Salary ASC LIMIT 5 ;
+OR 
+---SELECT * FROM Employee ORDER BY Salary AS ASC LIMIT 5
+
+### 16. Customer Search
+
+Customer support wants to find customers whose names **contain the word `sharma` anywhere in their name**.
+
+Use `LIKE`.
+
+---SELECT * FROM Employee WHERE name like '%sharma%;
+
+### 17. Order Value Investigation 🔥
+
+Management wants orders where the product price is between **₹500 and ₹2,000**, but they only want orders from:
+
+```text
+Pune
+Mumbai
+```
+
+Think carefully about combining the conditions.
+
+---SELECT * FROM price WHERE IN  city ('Pune' , 'Mumbai')  price BETWEEN 500 AND 2000;
+
+# 🔴 NEW REAL-LIFE SCENARIO
+
+Imagine you're building a **college admission system**.
+
+Table:
+
+```text
+Student
+--------------------------------
+student_id
+name
+course
+city
+age
+fees
+email
+is_active
+```
+
+### 18. Admission Eligibility
+
+The college wants students:
+
+* aged between 18 and 25
+* applying for either BCA or MCA
+* from Pune
+
+Display their name, course, and city.
+
+---SELECT * FROM Student WHERE IN AGE BETWEEN 18 AND 25 and IN Course ('MCA' , 'BCA') AND IN City = 'Pune';  
+
+### 19. Admission Statistics
+
+The college management asks:
+
+> “How many active students have been admitted?”
+
+Return the count.
+
+--- Select count(Is_Active) FROM Student;
+
+### 20. 🔥 FINAL INTERVIEW-STYLE SCENARIO
+
+You're working as a junior data analyst for an online shopping company.
+
+The manager says:
+
+> “Give me the names, cities and prices of the **5 most expensive delivered orders** from **Pune or Mumbai**, where the price is between **₹1,000 and ₹10,000**, and the customer's name starts with **A**.”
+
+You need to figure out the complete query yourself.
+
+This single question tests your ability to combine:
+
+**filtering + AND/OR + LIKE + BETWEEN + ORDER BY + LIMIT + column selection**
+
+--- ok  i can try..
+--- SELECT name , city , price FROM customer ORDER BY price ASC IN city ('Pune','Mumbai') AND IN Price BETWEEN 1000 AND 10000 AND name LIKE 'A%' LIMIT 5; 
+
+## 🎯 How I want you to solve these
+
+Don't immediately type SQL.
+
+For each question, first ask yourself:
+
+**1. What information is being requested?**
+**2. Which table?**
+**3. Which columns?**
+**4. What conditions?**
+**5. Do I need filtering?**
+**6. Do I need sorting?**
+**7. Do I need LIMIT/OFFSET?**
+**8. Do I need an aggregate function?**
+
+Then write the query.
+
+**Especially Q17 and Q20—don't rush them.** Those are the type of questions that will tell us whether you're actually building SQL logic or just memorizing syntax.
+
+Send me your **20 queries exactly as you write them**. I'll evaluate them one by one and track **which weaknesses are disappearing and which ones are still repeating**.
