@@ -5,7 +5,7 @@
 -- ALTER TABLE Customers change column acccount_year Account_year Year ;
 
 
-IN-- SERT INTO Customers
+-- INSERT INTO Customers
 -- (cust_name, c_city, Account_year, Membership, CStatus)
 -- VALUES
 -- ('Aarav Sharma', 'Pune', 2021, 'Premium', 'Active'),
@@ -46,13 +46,23 @@ IN-- SERT INTO Customers
 -- drop table products;
 
 -- ALTER TABLE Products ADD CONSTRAINT const_name FOREIGN KEY (cust_id) REFERENCES Customers(cust_id);
-
--- DESC customers;
--- desc products;
-DELETE FROM customers where cust_id = 3;
+DESC customers;
+desc products;
 
 select * from customers;
 select * from products;
 
-SELECT * FROM Products
-WHERE cust_id = 3;
+-- INNER
+SELECT c.cust_name , c.c_city, p.product_name , p.price from products as p 
+INNER JOIN customers as c ON p.cust_id = c.cust_id;
+SELECT c.cust_name, p.product_id , c.cust_id , p.product_name , p.category from customers  as c INNER JOIN products as p ON c.cust_id = p.cust_id WHERE c.c_cITY = 'Pune'; 
+
+-- LEFT 
+SELECT c.cust_name , p.product_name FROM customers as c LEFT JOIN products as p ON p.cust_id = c.cust_id;
+
+-- RIGHT
+SELECT product_name,product_id  , cust_name FROM customers as c RIGHT JOIN products as p ON c.cust_id = p.cust_id; 
+
+SELECT c.membership ,c.cust_name, p.product_id ,product_name , p.category from customers  as c LEFT JOIN products as p ON c.cust_id = p.cust_id WHERE c.membership = 'GOLD'; 
+
+SELECT c.membership ,c.cust_name, p.price,product_name , p.category from customers  as c RIGHT JOIN products as p ON c.cust_id = p.cust_id ORDER BY p.price DESC; 
