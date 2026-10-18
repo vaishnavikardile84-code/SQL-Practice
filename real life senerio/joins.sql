@@ -57,12 +57,51 @@ SELECT c.cust_name , c.c_city, p.product_name , p.price from products as p
 INNER JOIN customers as c ON p.cust_id = c.cust_id;
 SELECT c.cust_name, p.product_id , c.cust_id , p.product_name , p.category from customers  as c INNER JOIN products as p ON c.cust_id = p.cust_id WHERE c.c_cITY = 'Pune'; 
 
+SELECT c.cust_name , p.product_name , p.price 
+from products as p 
+INNER JOIN 
+customers as c ON p.cust_id = c.cust_id WHERE price > 10000;
+
 -- LEFT 
 SELECT c.cust_name , p.product_name FROM customers as c LEFT JOIN products as p ON p.cust_id = c.cust_id;
 
+SELECT c.cust_name , p.product_name , p.category
+from customers as c
+LEFT JOIN 
+products as p ON p.cust_id = c.cust_id and p.Category = 'Electroics';
+
+SELECT c.cust_name , p.Category , p.product_name FROM customers as c LEFT JOIN
+ products as p ON p.cust_id = c.cust_id where category = 'Electronics';
 -- RIGHT
 SELECT product_name,product_id  , cust_name FROM customers as c RIGHT JOIN products as p ON c.cust_id = p.cust_id; 
 
 SELECT c.membership ,c.cust_name, p.product_id ,product_name , p.category from customers  as c LEFT JOIN products as p ON c.cust_id = p.cust_id WHERE c.membership = 'GOLD'; 
 
 SELECT c.membership ,c.cust_name, p.price,product_name , p.category from customers  as c RIGHT JOIN products as p ON c.cust_id = p.cust_id ORDER BY p.price DESC; 
+
+SELECT c.cust_name , p.product_name  ,c.membership , p.category
+from customers as c 
+INNER JOIN 
+products as p ON p.cust_id = c.cust_id WHERE membership = 'GOLD' and category = 'Electronics';
+
+SELECT c.cust_name , p.product_name , c.membership , p.Category 
+from customers as c 
+LEFT JOIN 
+products as p ON p.cust_id = c.cust_id WHERE c.membership = 'GOLD' and c.c_city = 'Pune';
+
+SELECT p.product_name ,c.cust_name , p.price from customers as c 
+RIGHT JOIN products as p on c.cust_id = p.cust_id 
+WHERE Price > 5000;  
+
+SELECT c.cust_name , c.membership, p.product_name ,p.price,c.cust_name from customers as c 
+INNER JOIN products as p on c.cust_id = p.cust_id 
+where membership in ('gold' , 'silver') and p.Price > 10000 ;
+
+
+SELECT c.cust_name, c.membership ,p.product_name , p.price from customers as c 
+INNER JOIN products as p on c.cust_id = p.cust_id 
+where membership = 'GOLD ' OR c.membership =  'SILVER'  and  p.Price < 150000;
+
+SELECT cust_name, p.Price , product_name from customers as c 
+LEFT JOIN products as p ON c.cust_id = p.cust_id where category = "Electronics" and Price < 20000;
+
